@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Personal Date Reminder System</title>
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#687386;--line:#e5eaf1;--accent:#2563eb;--accent2:#0f766e;--danger:#dc2626;--warn:#d97706;--shadow:0 10px 30px rgba(15,23,42,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text)}
+header{background:linear-gradient(135deg,#0f172a,#1d4ed8);color:#fff;padding:28px 22px 58px}
+.wrap{max-width:1180px;margin:auto}.top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}.title{font-size:30px;font-weight:800;margin:6px 0}.subtitle{opacity:.82}.clock{background:rgba(255,255,255,.12);padding:12px 16px;border:1px solid rgba(255,255,255,.18);border-radius:14px;text-align:right;min-width:180px}
+main{max-width:1180px;margin:-32px auto 40px;padding:0 18px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:18px}.stat-label{color:var(--muted);font-size:13px}.stat{font-size:28px;font-weight:800;margin-top:6px}.stat small{font-size:12px;color:var(--muted);font-weight:500}.today{margin-top:18px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.section-head h2{margin:0;font-size:18px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}.tab,button{border:1px solid var(--line);background:#fff;color:var(--text);border-radius:10px;padding:9px 13px;cursor:pointer;font-weight:600}.tab.active{background:#eff6ff;border-color:#bfdbfe;color:#1d4ed8}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.search{flex:1;min-width:220px;border:1px solid var(--line);border-radius:11px;padding:11px 13px;font-size:14px;outline:none}.search:focus{border-color:#93c5fd;box-shadow:0 0 0 3px #dbeafe}
+button.primary{background:var(--accent);color:white;border-color:var(--accent)}button.green{background:#0f766e;color:white;border-color:#0f766e}
+.list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.person{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px;border:1px solid var(--line);border-radius:13px;background:#fff}.avatar{width:42px;height:42px;border-radius:12px;background:#eff6ff;color:#1d4ed8;display:grid;place-items:center;font-weight:800}.pinfo{flex:1;min-width:0}.pname{font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;letter-spacing:.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase}.meta{font-size:12px;color:var(--muted);margin-top:3px}.badge{font-size:11px;font-weight:800;border-radius:999px;padding:6px 9px;white-space:nowrap}.bday{background:#ecfdf5;color:#047857}.soon{background:#fff7ed;color:#c2410c}.normal{background:#f1f5f9;color:#475569}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse}.table-name{font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;text-transform:uppercase}.table th,.table td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);font-size:13px}.table th{color:var(--muted);font-weight:700}.table tr:hover{background:#f8fafc}.empty{text-align:center;padding:30px;color:var(--muted)}
+.notice{margin-top:14px;padding:13px 15px;border-radius:12px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af;font-size:13px}
+.footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 30px}.hidden{display:none!important}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.list{grid-template-columns:1fr}.top{flex-direction:column}.clock{text-align:left}}
+@media(max-width:520px){header{padding:22px 15px 48px}.title{font-size:24px}main{padding:0 10px}.grid{grid-template-columns:1fr 1fr;gap:8px}.card{padding:13px}.stat{font-size:23px}.person{padding:10px}.badge{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="top">
+<div><div class="eyebrow">Personal Date Reminder System</div><div class="title">🎂 Birthday & Date Reminder</div><div class="subtitle">Pengurusan tarikh lahir dan peringatan staf</div></div>
+<div class="clock"><div id="todayDate">—</div><strong id="clock">—</strong></div>
+</div></div></header>
+<main>
+<section class="grid">
+<div class="card"><div class="stat-label">Jumlah Rekod</div><div class="stat" id="total">0</div><small>staf</small></div>
+<div class="card"><div class="stat-label">Hari Ini</div><div class="stat" id="todayCount">0</div><small>hari lahir</small></div>
+<div class="card"><div class="stat-label">7 Hari Akan Datang</div><div class="stat" id="weekCount">0</div><small>peringatan</small></div>
+<div class="card"><div class="stat-label">Bulan Ini</div><div class="stat" id="monthCount">0</div><small>hari lahir</small></div>
+</section>
+
+<section class="card today" id="todayCard">
+<div class="section-head"><h2>🔔 Peringatan Terdekat</h2><span id="todayLabel" class="stat-label"></span></div>
+<div id="upcoming" class="list"></div>
+<div id="notice" class="notice hidden"></div>
+</section>
+
+<section class="card today">
+<div class="section-head"><h2>📋 Senarai Rekod</h2><span id="resultCount" class="stat-label"></span></div>
+<div class="toolbar">
+<input id="search" class="search" placeholder="🔍 Cari nama..." oninput="renderTable()">
+<button class="tab active" onclick="setFilter('today',this)">Hari Ini</button>
+<button class="tab" onclick="setFilter('month',this)">Bulan Ini</button>
+<button class="tab" onclick="setFilter('nextmonth',this)">Bulan Depan</button>
+<button class="tab" onclick="setFilter('all',this)">Semua</button>
+</div>
+<div class="table-wrap"><table class="table"><thead><tr><th>Nama</th><th>Tarikh Lahir</th><th>Umur</th><th>Hari Lahir Seterusnya</th><th>Status</th></tr></thead><tbody id="tbody"></tbody></table></div>
+</section>
+
+<section class="card today">
+<div class="section-head"><h2>⚙️ Data & Tetapan</h2></div>
+<div class="toolbar">
+<button type="button" onclick="document.getElementById('csvFile').click()">⬆ Import CSV</button>
+<button class="green" type="button" onclick="requestNotification()">🎂 Aktifkan Ucapan Hari Lahir</button>
+<input id="csvFile" type="file" accept=".csv,text/csv" class="hidden" onchange="importCSV(event)">
+</div>
+<div class="notice">
+Data sistem mengandungi <strong id="dataCount">43 rekod</strong>.
+Import CSV baharu akan <strong>menambah</strong> staf ke dalam sistem dan mengelakkan rekod pendua.
+Notifikasi ucapan hari lahir ditetapkan pada <strong>8:00 pagi</strong>.
+</div>
+</section>
+<div class="footer">Personal Date Reminder System • Versi 1.1 • Data sumber: PKMDPBIRTHDAY.xlsx • Import CSV boleh digunakan untuk menambah staf</div>
+</main>
+
+<script>
+let people = [{"name": "NOR HAYATI BINTI ABDUL RAZAK", "dob": "1976-04-02"}, {"name": "NOORZIHA BINTI MOHD KASIRUN", "dob": "1982-01-14"}, {"name": "NORIZAN BINTI MOHD SIDIK", "dob": "1977-05-20"}, {"name": "NORAINI BINTI JAFFAR @ ABDULLAH", "dob": "1971-11-05"}, {"name": "MARIAM BINTI HASSAN", "dob": "1980-11-06"}, {"name": "PERKAS RAO A/L RAMAH", "dob": "1971-02-27"}, {"name": "MOHD SALWANI BIN SALAMUN", "dob": "1981-06-10"}, {"name": "ROIZAWATI BINTI ALI", "dob": "1979-01-15"}, {"name": "SYAHIDAN BIN SAHROM", "dob": "1984-08-02"}, {"name": "EMILIA BINTI ROZILAN", "dob": "1985-05-18"}, {"name": "NUR SYAFIQ BIN RAZALI", "dob": "1987-07-28"}, {"name": "HAZZARIZA BINTI NAPIAH", "dob": "1981-02-27"}, {"name": "NURUL FARHANA BINTI ABDUL HAMID", "dob": "1986-10-16"}, {"name": "NOORAZREEN BINTI SAZALI", "dob": "1986-08-20"}, {"name": "MOHD NAZMI BIN ZAINUDDIN", "dob": "1983-02-25"}, {"name": "NORFAIZURA BT MD JANI", "dob": "1983-02-28"}, {"name": "MUHAMMAD FADZLI B. ABDUL MAIL", "dob": "1983-02-28"}, {"name": "SAIFUL BAHRI BIN MOHD ISA", "dob": "1980-04-10"}, {"name": "SITI AISYAH BINTI MOHD RAZIE", "dob": "1995-04-03"}, {"name": "DIANA SARAH BINTI MAWARDI", "dob": "1985-02-28"}, {"name": "FADZLY BIN AHMAD ZAINUDIN", "dob": "1980-11-15"}, {"name": "SARIPAH BINTI ABDUL SAMAD", "dob": "1970-09-19"}, {"name": "NOR AZIMA BINTI ROSELI", "dob": "1981-09-27"}, {"name": "LUKMAN BIN MOHAMAD", "dob": "1970-03-22"}, {"name": "AHMAD ARIFF AFFENDI BIN HAMZAH", "dob": "1987-09-06"}, {"name": "NURUL AMANINA BINTI NAZARUDIN", "dob": "1997-04-08"}, {"name": "SAMALUDIN BIN SUNDALU", "dob": "1981-12-05"}, {"name": "MUHAMMAD HAFIZAN BIN OMAR", "dob": "1977-06-30"}, {"name": "NUR AMEELIA BINTI BADRULSAM", "dob": "1994-11-23"}, {"name": "HASHIRA BINTI MOHAMED", "dob": "1983-11-08"}, {"name": "MOHAMAD ZAKARIA BIN ISMAIL", "dob": "1982-12-25"}, {"name": "NOOR AZARIAH BINTI NASRI", "dob": "1987-07-21"}, {"name": "NOOR ARISHA FARHANA BINTI MOHD YUSRI", "dob": "2001-05-23"}, {"name": "ZULKIFLI BIN ADAL", "dob": "1976-11-01"}, {"name": "SITI KHAIRUNNASHA ADYREENA BINTI MOHD.KERDAT", "dob": "1998-11-08"}, {"name": "ARENA RUSYDIENA BINTI ANUAR", "dob": "1998-11-09"}, {"name": "SYAHIDATUL ZUNIKA BINTI HAMEDI", "dob": "1994-01-05"}, {"name": "RECHALENE MAKILIN", "dob": "1988-07-27"}, {"name": "RABIATUL ADHAWIAH BINTI ISMAIL", "dob": "1981-04-03"}, {"name": "DINA ANAK KEMARAU", "dob": "1992-01-20"}, {"name": "MUHAMMAD HAZIQ BIN MD JUHAIRI", "dob": "1990-08-09"}, {"name": "FARHANA BINTI ZAILANI", "dob": "1997-12-29"}, {"name": "FARAH ADIBAH BINTI AHMAD ZAIDI", "dob": "1999-01-19"}];
+let filter='today';
+
+function dLocal(s){const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)}
+function fmtDate(d){return d.toLocaleDateString('ms-MY',{day:'2-digit',month:'long',year:'numeric'})}
+function shortDate(d){return d.toLocaleDateString('ms-MY',{day:'2-digit',month:'2-digit',year:'numeric'})}
+function ageAt(p, year){
+ const b=dLocal(p.dob); let a=year-b.getFullYear(); const ref=new Date(year,b.getMonth(),b.getDate());
+ if(ref>new Date(year,11,31)) a--; return a;
+}
+function currentAge(p){
+ const b=dLocal(p.dob), n=new Date(); let a=n.getFullYear()-b.getFullYear();
+ const before=n.getMonth()<b.getMonth() || (n.getMonth()===b.getMonth() && n.getDate()<b.getDate());
+ return a-(before?1:0);
+}
+function nextBirthday(p, from=new Date()){
+ const b=dLocal(p.dob); let y=from.getFullYear(); let x=new Date(y,b.getMonth(),b.getDate());
+ if(x<new Date(from.getFullYear(),from.getMonth(),from.getDate())) x=new Date(y+1,b.getMonth(),b.getDate());
+ return x;
+}
+function daysUntil(p){
+ const n=new Date(); n.setHours(0,0,0,0); const x=nextBirthday(p,n);
+ return Math.round((x-n)/86400000);
+}
+function initials(n){return n.split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase()}
+function status(p){
+ const d=daysUntil(p); if(d===0)return ['Hari ini','bday']; if(d<=7)return [`${d} hari lagi`,'soon']; return [`${d} hari lagi`,'normal'];
+}
+function renderStats(){
+ const now=new Date(), m=now.getMonth(), y=now.getFullYear();
+ document.getElementById('total').textContent=people.length;
+ document.getElementById('dataCount').textContent=people.length+' rekod';
+ document.getElementById('todayCount').textContent=people.filter(p=>daysUntil(p)===0).length;
+ document.getElementById('weekCount').textContent=people.filter(p=>daysUntil(p)>=1 && daysUntil(p)<=7).length;
+ document.getElementById('monthCount').textContent=people.filter(p=>nextBirthday(p).getMonth()===m).length;
+ document.getElementById('todayDate').textContent=fmtDate(now);
+ document.getElementById('todayLabel').textContent=fmtDate(now);
+}
+function card(p){
+ const [st,cl]=status(p), n=nextBirthday(p), nextAge=currentAge(p)+(daysUntil(p)===0?0:1);
+ return `<div class="person"><div class="avatar">${initials(p.name)}</div><div class="pinfo"><div class="pname">${esc(p.name)}</div><div class="meta">${fmtDate(dLocal(p.dob))} • Umur sekarang ${currentAge(p)} • ${fmtDate(n)}</div></div><span class="badge ${cl}">${st}</span></div>`;
+}
+function renderUpcoming(){
+ const arr=[...people].sort((a,b)=>daysUntil(a)-daysUntil(b)).slice(0,8);
+ document.getElementById('upcoming').innerHTML=arr.length?arr.map(card).join(''):'<div class="empty">Tiada rekod.</div>';
+ const today=people.filter(p=>daysUntil(p)===0);
+ const notice=document.getElementById('notice');
+ if(today.length){notice.classList.remove('hidden');notice.innerHTML='🎉 <strong>Hari lahir hari ini:</strong> '+today.map(p=>esc(p.name)).join(', ')+'.'}
+ else notice.classList.add('hidden');
+}
+function matches(p){
+ const q=document.getElementById('search').value.trim().toLowerCase();
+ if(q && !p.name.toLowerCase().includes(q)) return false;
+
+ const d=daysUntil(p);
+ const n=nextBirthday(p);
+ const now=new Date();
+
+ if(filter==='today') return d===0;
+ if(filter==='month') return dLocal(p.dob).getMonth()===now.getMonth();
+
+ const nextMonth=new Date(now.getFullYear(),now.getMonth()+1,1);
+ return filter==='nextmonth'
+   ? dLocal(p.dob).getMonth()===nextMonth.getMonth()
+   : true;
+}
+function renderTable(){
+ const arr=[...people].filter(matches).sort((a,b)=>daysUntil(a)-daysUntil(b));
+ document.getElementById('resultCount').textContent=`${arr.length} rekod`;
+ document.getElementById('tbody').innerHTML=arr.length?arr.map(p=>{
+ const [st,cl]=status(p), n=nextBirthday(p);
+ return `<tr><td class="table-name"><strong>${esc(p.name)}</strong></td><td>${shortDate(dLocal(p.dob))}</td><td>${currentAge(p)}</td><td>${fmtDate(n)}</td><td><span class="badge ${cl}">${st}</span></td></tr>`
+ }).join(''):'<tr><td colspan="5" class="empty">Tiada rekod sepadan.</td></tr>';
+}
+function setFilter(f,el){filter=f;document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));el.classList.add('active');renderTable()}
+function importCSV(e){
+ const file=e.target.files[0];
+ if(!file)return;
+
+ const reader=new FileReader();
+ reader.onload=()=>{
+   const text=reader.result.replace(/^\ufeff/,'');
+   const lines=text.split(/\r?\n/).filter(line=>line.trim()!=='');
+   if(lines.length<2){
+     alert('Fail CSV tidak mengandungi rekod.');
+     return;
+   }
+
+   const imported=[];
+   for(let i=1;i<lines.length;i++){
+     const line=lines[i].trim();
+     const m=line.match(/^"?(.*?)"?,\s*(\d{4}-\d{2}-\d{2}|\d{1,2}\/\d{1,2}\/\d{4})\s*$/);
+     if(!m)continue;
+
+     let name=m[1].replace(/^"|"$/g,'').replaceAll('""','"').trim().toUpperCase();
+     let dob=m[2].trim();
+
+     if(dob.includes('/')){
+       const parts=dob.split('/');
+       if(parts.length===3){
+         const [d,mo,y]=parts;
+         dob=`${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+       }
+     }
+
+     if(name && /^\d{4}-\d{2}-\d{2}$/.test(dob)){
+       imported.push({name,dob});
+     }
+   }
+
+   if(!imported.length){
+     alert('Tiada rekod yang sah ditemui. Pastikan CSV mempunyai lajur NAMA dan DOB.');
+     return;
+   }
+
+   let added=0, duplicate=0;
+   const existing=new Set(people.map(p=>`${p.name.toUpperCase()}|${p.dob}`));
+
+   imported.forEach(person=>{
+     const key=`${person.name}|${person.dob}`;
+     if(existing.has(key)){
+       duplicate++;
+     }else{
+       people.push(person);
+       existing.add(key);
+       added++;
+     }
+   });
+
+   savePeople();
+   renderAll();
+
+   alert(`Import selesai.\n\nRekod baharu ditambah: ${added}\nRekod pendua diabaikan: ${duplicate}\nJumlah rekod dalam sistem: ${people.length}`);
+ };
+ reader.readAsText(file);
+ e.target.value='';
+}function esc(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+
+
+async function requestNotification(){
+ if(!('Notification' in window)){
+   alert('Pelayar ini tidak menyokong notifikasi.');
+   return;
+ }
+
+ try{
+   const permission=await Notification.requestPermission();
+
+   if(permission!=='granted'){
+     alert('Kebenaran notifikasi belum diberikan. Sila benarkan Notifications untuk laman ini.');
+     return;
+   }
+
+   localStorage.setItem('birthdayNotifications','enabled');
+   scheduleBirthdayNotification();
+
+   const todayBirthdays=people.filter(p=>daysUntil(p)===0);
+
+   if(todayBirthdays.length){
+     sendBirthdayNotification(todayBirthdays);
+   }else{
+     alert('Notifikasi ucapan hari lahir telah diaktifkan. Sistem akan menyemak hari lahir pada jam 8:00 pagi setiap hari.');
+   }
+ }catch(err){
+   alert('Notifikasi tidak dapat diaktifkan pada peranti ini.');
+ }
+}
+
+function birthdayMessage(p){
+ return `🎉 Selamat Hari Lahir, ${p.name}! Semoga dipanjangkan umur, dikurniakan kesihatan yang baik dan sentiasa dipermudahkan segala urusan.`;
+}
+
+function sendBirthdayNotification(list){
+ if(!('Notification' in window) || Notification.permission!=='granted')return;
+
+ list.forEach(p=>{
+   new Notification('🎂 Selamat Hari Lahir!',{
+     body:birthdayMessage(p),
+     tag:`birthday-${p.dob}-${new Date().getFullYear()}`,
+     requireInteraction:false
+   });
+ });
+}
+
+function scheduleBirthdayNotification(){
+ if(window._birthdayTimer)clearTimeout(window._birthdayTimer);
+
+ const now=new Date();
+ const next=new Date(now);
+ next.setHours(8,0,0,0);
+
+ if(now>=next){
+   next.setDate(next.getDate()+1);
+ }
+
+ const delay=next-now;
+
+ window._birthdayTimer=setTimeout(()=>{
+   const todayBirthdays=people.filter(p=>daysUntil(p)===0);
+   if(todayBirthdays.length)sendBirthdayNotification(todayBirthdays);
+   scheduleBirthdayNotification();
+ },delay);
+}
+function savePeople(){
+ try{
+   localStorage.setItem('personalDateReminderPeople_v11',JSON.stringify(people));
+ }catch(err){}
+}
+
+function loadPeople(){
+ try{
+   const saved=localStorage.getItem('personalDateReminderPeople_v11');
+   if(saved){
+     const parsed=JSON.parse(saved);
+     if(Array.isArray(parsed) && parsed.length)people=parsed;
+   }
+ }catch(err){}
+}
+function tick(){document.getElementById('clock').textContent=new Date().toLocaleTimeString('ms-MY',{hour:'2-digit',minute:'2-digit',second:'2-digit'});}
+function renderAll(){renderStats();renderUpcoming();renderTable()}
+localStorage.removeItem('personalDateReminderPeople');
+loadPeople();
+savePeople();
+renderAll();tick();setInterval(tick,1000);if(localStorage.getItem('birthdayNotifications')==='enabled')scheduleBirthdayNotification();
+</script>
+</body></html>
