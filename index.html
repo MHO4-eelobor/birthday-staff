@@ -34,7 +34,7 @@ button.primary{background:var(--accent);color:white;border-color:var(--accent)}b
 </section>
 
 <section class="card today" id="todayCard">
-<div class="section-head"><h2>🔔 Peringatan Terdekat</h2><span id="todayLabel" class="stat-label"></span></div>
+<div class="section-head"><h2>🔔 4 Peringatan Terdekat</h2><span id="todayLabel" class="stat-label"></span></div>
 <div id="upcoming" class="list"></div>
 <div id="notice" class="notice hidden"></div>
 </section>
@@ -111,7 +111,7 @@ function card(p){
  return `<div class="person"><div class="avatar">${initials(p.name)}</div><div class="pinfo"><div class="pname">${esc(p.name)}</div><div class="meta">${fmtDate(dLocal(p.dob))} • Umur sekarang ${currentAge(p)} • ${fmtDate(n)}</div></div><span class="badge ${cl}">${st}</span></div>`;
 }
 function renderUpcoming(){
- const arr=[...people].sort((a,b)=>daysUntil(a)-daysUntil(b)).slice(0,8);
+ const arr=[...people].sort((a,b)=>daysUntil(a)-daysUntil(b)).slice(0,4);
  document.getElementById('upcoming').innerHTML=arr.length?arr.map(card).join(''):'<div class="empty">Tiada rekod.</div>';
  const today=people.filter(p=>daysUntil(p)===0);
  const notice=document.getElementById('notice');
