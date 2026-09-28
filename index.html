@@ -6,18 +6,86 @@
 <title>Personal Date Reminder System</title>
 <style>
 :root{--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#687386;--line:#e5eaf1;--accent:#2563eb;--accent2:#0f766e;--danger:#dc2626;--warn:#d97706;--shadow:0 10px 30px rgba(15,23,42,.07)}
+body.dark{--bg:#0f172a;--card:#172033;--text:#e5e7eb;--muted:#94a3b8;--line:#334155;--shadow:0 10px 30px rgba(0,0,0,.28)}
+body.dark header{background:linear-gradient(135deg,#020617,#172554)}
+body.dark .tab,body.dark button,body.dark .search{background:#1e293b;color:var(--text);border-color:var(--line)}
+body.dark .tab.active{background:#172554;border-color:#1d4ed8;color:#bfdbfe}
+body.dark .search::placeholder{color:#94a3b8}
+body.dark .clear-search:hover{background:#334155}
+body.dark .person{background:#1e293b}
+body.dark .table tr:hover{background:#1e293b}
+body.dark .avatar{background:#172554;color:#bfdbfe}
+body.dark .normal{background:#334155;color:#cbd5e1}
+body.dark .notice{background:#172554;border-color:#1e3a8a;color:#bfdbfe}
+body.dark .birthday-today{background:linear-gradient(135deg,#3b2414,#29200f);border-color:#92400e}
+body.dark .birthday-today-person{background:#1e293b;border-color:#92400e}
+body.dark .toast{background:#172033;border-color:#166534}
+body.dark .toast-message{color:#94a3b8}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text)}
 header{background:linear-gradient(135deg,#0f172a,#1d4ed8);color:#fff;padding:28px 22px 58px}
 .wrap{max-width:1180px;margin:auto}.top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}.title{font-size:30px;font-weight:800;margin:6px 0}.subtitle{opacity:.82}.clock{background:rgba(255,255,255,.12);padding:12px 16px;border:1px solid rgba(255,255,255,.18);border-radius:14px;text-align:right;min-width:180px}
-main{max-width:1180px;margin:-32px auto 40px;padding:0 18px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:18px}.stat-label{color:var(--muted);font-size:13px}.stat{font-size:28px;font-weight:800;margin-top:6px}.stat small{font-size:12px;color:var(--muted);font-weight:500}.today{margin-top:18px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.section-head h2{margin:0;font-size:18px}
+main{max-width:1180px;margin:-32px auto 40px;padding:0 18px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:18px}.dashboard-card{cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}.dashboard-card:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(15,23,42,.11);border-color:#cbd5e1}.dashboard-card:focus{outline:3px solid rgba(37,99,235,.18);outline-offset:2px}.dashboard-card:active{transform:translateY(0)}.stat-label{color:var(--muted);font-size:13px}.stat{font-size:28px;font-weight:800;margin-top:6px}.stat small{font-size:12px;color:var(--muted);font-weight:500}.today{margin-top:18px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.section-head h2{margin:0;font-size:18px}
 .tabs{display:flex;gap:8px;flex-wrap:wrap}.tab,button{border:1px solid var(--line);background:#fff;color:var(--text);border-radius:10px;padding:9px 13px;cursor:pointer;font-weight:600}.tab.active{background:#eff6ff;border-color:#bfdbfe;color:#1d4ed8}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.search{flex:1;min-width:220px;border:1px solid var(--line);border-radius:11px;padding:11px 13px;font-size:14px;outline:none}.search:focus{border-color:#93c5fd;box-shadow:0 0 0 3px #dbeafe}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.searchbox{position:relative;flex:1;min-width:240px}.search{width:100%;border:1px solid var(--line);border-radius:11px;padding:11px 42px 11px 13px;font-size:14px;outline:none;background:#fff}.clear-search{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:28px;height:28px;padding:0;border:0;background:transparent;color:var(--muted);font-size:18px;display:none;align-items:center;justify-content:center}.clear-search:hover{background:#f1f5f9}.searchbox.has-value .clear-search{display:flex}
 button.primary{background:var(--accent);color:white;border-color:var(--accent)}button.green{background:#0f766e;color:white;border-color:#0f766e}
-.list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.person{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px;border:1px solid var(--line);border-radius:13px;background:#fff}.avatar{width:42px;height:42px;border-radius:12px;background:#eff6ff;color:#1d4ed8;display:grid;place-items:center;font-weight:800}.pinfo{flex:1;min-width:0}.pname{font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;letter-spacing:.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase}.meta{font-size:12px;color:var(--muted);margin-top:3px}.badge{font-size:11px;font-weight:800;border-radius:999px;padding:6px 9px;white-space:nowrap}.bday{background:#ecfdf5;color:#047857}.soon{background:#fff7ed;color:#c2410c}.normal{background:#f1f5f9;color:#475569}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse}.table-name{font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;text-transform:uppercase}.table th,.table td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);font-size:13px}.table th{color:var(--muted);font-weight:700}.table tr:hover{background:#f8fafc}.empty{text-align:center;padding:30px;color:var(--muted)}
-.notice{margin-top:14px;padding:13px 15px;border-radius:12px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af;font-size:13px}
+.list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.person{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px;border:1px solid var(--line);border-radius:13px;background:#fff}.upcoming-person{cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}.upcoming-person:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(15,23,42,.08);border-color:#bfdbfe}.upcoming-person:focus{outline:3px solid rgba(37,99,235,.18);outline-offset:2px}.record-highlight{animation:recordPulse 1.8s ease}.record-highlight td{background:#eff6ff!important}.record-highlight td:first-child{box-shadow:inset 4px 0 0 #2563eb}@keyframes recordPulse{0%,100%{opacity:1}45%{opacity:.72}}.avatar{width:42px;height:42px;border-radius:12px;background:#eff6ff;color:#1d4ed8;display:grid;place-items:center;font-weight:800}.pinfo{flex:1;min-width:0}.pname{font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;letter-spacing:.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase}.meta{font-size:12px;color:var(--muted);margin-top:3px}.badge{font-size:11px;font-weight:800;border-radius:999px;padding:6px 9px;white-space:nowrap}.bday{background:#ecfdf5;color:#047857}.soon{background:#fff7ed;color:#c2410c}.normal{background:#f1f5f9;color:#475569}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse}.table-name{font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;text-transform:uppercase}.table th,.table td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);font-size:13px}.table th{color:var(--muted);font-weight:700}.table tr:hover{background:#f8fafc}.empty{text-align:center;padding:30px;color:var(--muted)}
+.toast{position:fixed;right:20px;bottom:20px;z-index:9999;min-width:280px;max-width:420px;padding:13px 16px;border:1px solid #bbf7d0;border-radius:14px;background:#fff;box-shadow:0 14px 35px rgba(15,23,42,.16);display:flex;align-items:flex-start;gap:10px;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s ease,transform .2s ease}.toast.show{opacity:1;transform:translateY(0)}.toast-icon{font-size:18px;line-height:1.2}.toast-title{font-size:13px;font-weight:800}.toast-message{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}.toast-close{margin-left:auto;border:0;background:transparent;padding:0 2px;color:var(--muted);font-size:18px;line-height:1;cursor:pointer}.notice{margin-top:14px;padding:13px 15px;border-radius:12px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af;font-size:13px}.birthday-today{margin-bottom:16px;padding:18px;border-radius:16px;background:linear-gradient(135deg,#fff7ed,#fffbeb);border:1px solid #fed7aa}.birthday-today-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}.birthday-today-icon{font-size:28px}.birthday-today-title{font-size:16px;font-weight:800;color:#9a3412}.birthday-today-sub{font-size:12px;color:#92400e;margin-top:2px}.birthday-today-list{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.birthday-today-person{background:#fff;border:1px solid #fed7aa;border-radius:12px;padding:11px 13px;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;text-transform:uppercase}.birthday-today-person small{display:block;font-family:Inter,Segoe UI,Arial,sans-serif;font-size:11px;font-weight:500;color:#78716c;text-transform:none;margin-top:4px}
 .footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 30px}.hidden{display:none!important}
-@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.list{grid-template-columns:1fr}.top{flex-direction:column}.clock{text-align:left}}
-@media(max-width:520px){header{padding:22px 15px 48px}.title{font-size:24px}main{padding:0 10px}.grid{grid-template-columns:1fr 1fr;gap:8px}.card{padding:13px}.stat{font-size:23px}.person{padding:10px}.badge{display:none}}
+@media(max-width:850px){
+.grid{grid-template-columns:repeat(2,1fr)}
+.list{grid-template-columns:1fr}
+.top{flex-direction:column}
+.clock{text-align:left;min-width:0;width:100%}
+.section-head{align-items:flex-start}
+.toolbar{gap:8px}
+}
+@media(max-width:600px){
+header{padding:20px 14px 46px}
+.title{font-size:23px;line-height:1.15}
+.subtitle{font-size:13px}
+main{padding:0 10px;margin-top:-26px}
+.grid{grid-template-columns:1fr 1fr;gap:8px}
+.card{padding:13px;border-radius:15px}
+.stat{font-size:22px}
+.dashboard-card small{font-size:10px;line-height:1.3}
+.section-head{gap:8px}
+.section-head h2{font-size:16px;line-height:1.25}
+.toolbar{display:grid;grid-template-columns:1fr 1fr}
+.searchbox{grid-column:1 / -1;min-width:0}
+.toolbar > .tab{width:100%;padding:9px 7px;font-size:12px}
+.toolbar > button:not(.tab){width:100%}
+.table-wrap{margin:0 -3px;overflow:visible}
+.table thead{display:none}
+.table,.table tbody,.table tr,.table td{display:block;width:100%}
+.table tr{position:relative;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:10px 11px;margin-bottom:9px}
+.table td{border:0;padding:3px 0;font-size:12px}
+.table td:first-child{padding-right:70px;margin-bottom:5px}
+.table td:first-child::before{content:''}
+.table td:nth-child(2)::before{content:'🎂 '}
+.table td:nth-child(3)::before{content:'Umur: ';color:var(--muted);font-weight:600}
+.table td:nth-child(4)::before{content:'Hari lahir seterusnya: ';color:var(--muted);font-weight:600}
+.table td:nth-child(5){position:absolute;right:10px;top:10px}
+.table-name{font-size:14px!important;line-height:1.3}
+.table-name strong{display:block;white-space:normal;overflow:visible;text-overflow:clip}
+.age-cell strong{font-size:13px}
+.age-next{display:block;font-size:10px;color:var(--muted);margin-top:2px}
+.birthday-today{padding:15px}
+.birthday-today-list{grid-template-columns:1fr}
+.birthday-today-person{padding:12px}
+.birthday-today-person small{font-size:11px}
+.person{padding:10px}
+.pname{white-space:normal;line-height:1.3}
+.badge{font-size:10px;padding:5px 7px}
+.notice{font-size:12px}
+.footer{padding-bottom:22px}
+}
+@media(max-width:380px){
+.grid{grid-template-columns:1fr 1fr}
+.card{padding:11px}
+.stat{font-size:20px}
+.dashboard-card .stat-label{font-size:11px}
+.toolbar{grid-template-columns:1fr 1fr}
+}
 </style>
 </head>
 <body>
@@ -27,23 +95,24 @@ button.primary{background:var(--accent);color:white;border-color:var(--accent)}b
 </div></div></header>
 <main>
 <section class="grid">
-<div class="card"><div class="stat-label">Jumlah Rekod</div><div class="stat" id="total">0</div><small>staf</small></div>
-<div class="card"><div class="stat-label">Hari Ini</div><div class="stat" id="todayCount">0</div><small>hari lahir</small></div>
-<div class="card"><div class="stat-label">7 Hari Akan Datang</div><div class="stat" id="weekCount">0</div><small>peringatan</small></div>
-<div class="card"><div class="stat-label">Bulan Ini</div><div class="stat" id="monthCount">0</div><small>hari lahir</small></div>
+<div class="card dashboard-card" role="button" tabindex="0" title="Lihat semua rekod" onclick="dashboardFilter('all')" onkeydown="dashboardKey(event,'all')"><div class="stat-label">Jumlah Rekod</div><div class="stat" id="total">0</div><small>staf • klik untuk lihat semua</small></div>
+<div class="card dashboard-card" role="button" tabindex="0" title="Lihat hari lahir hari ini" onclick="dashboardFilter('today')" onkeydown="dashboardKey(event,'today')"><div class="stat-label">Hari Ini</div><div class="stat" id="todayCount">0</div><small>hari lahir • klik untuk lihat</small></div>
+<div class="card dashboard-card" role="button" tabindex="0" title="Lihat hari lahir 7 hari akan datang" onclick="dashboardFilter('week')" onkeydown="dashboardKey(event,'week')"><div class="stat-label">7 Hari Akan Datang</div><div class="stat" id="weekCount">0</div><small>peringatan • klik untuk lihat</small></div>
+<div class="card dashboard-card" role="button" tabindex="0" title="Lihat hari lahir bulan ini" onclick="dashboardFilter('month')" onkeydown="dashboardKey(event,'month')"><div class="stat-label">Bulan Ini</div><div class="stat" id="monthCount">0</div><small>hari lahir • klik untuk lihat</small></div>
 </section>
 
 <section class="card today" id="todayCard">
+<div id="todayBirthday" class="birthday-today hidden"></div>
 <div class="section-head"><h2>🔔 4 Peringatan Terdekat</h2><span id="todayLabel" class="stat-label"></span></div>
 <div id="upcoming" class="list"></div>
-<div id="notice" class="notice hidden"></div>
 </section>
 
 <section class="card today">
 <div class="section-head"><h2>📋 Senarai Rekod</h2><span id="resultCount" class="stat-label"></span></div>
 <div class="toolbar">
-<input id="search" class="search" placeholder="🔍 Cari nama..." oninput="renderTable()">
+<div class="searchbox" id="searchBox"><input id="search" class="search" placeholder="🔍 Cari nama staf..." oninput="renderTable()" autocomplete="off"><button type="button" class="clear-search" id="clearSearch" aria-label="Kosongkan carian" onclick="clearSearch()">×</button></div>
 <button class="tab active" onclick="setFilter('today',this)">Hari Ini</button>
+<button class="tab" onclick="setFilter('week',this)">7 Hari</button>
 <button class="tab" onclick="setFilter('month',this)">Bulan Ini</button>
 <button class="tab" onclick="setFilter('nextmonth',this)">Bulan Depan</button>
 <button class="tab" onclick="setFilter('all',this)">Semua</button>
@@ -56,6 +125,7 @@ button.primary{background:var(--accent);color:white;border-color:var(--accent)}b
 <div class="toolbar">
 <button type="button" onclick="document.getElementById('csvFile').click()">⬆ Import CSV</button>
 <button class="green" type="button" onclick="requestNotification()">🎂 Aktifkan Ucapan Hari Lahir</button>
+<button type="button" onclick="toggleDarkMode()" id="darkModeBtn">🌙 Mod Gelap</button>
 <input id="csvFile" type="file" accept=".csv,text/csv" class="hidden" onchange="importCSV(event)">
 </div>
 <div class="notice">
@@ -77,6 +147,9 @@ function shortDate(d){return d.toLocaleDateString('ms-MY',{day:'2-digit',month:'
 function ageAt(p, year){
  const b=dLocal(p.dob); let a=year-b.getFullYear(); const ref=new Date(year,b.getMonth(),b.getDate());
  if(ref>new Date(year,11,31)) a--; return a;
+}
+function birthdayAge(p){
+ const b=dLocal(p.dob); return new Date().getFullYear()-b.getFullYear();
 }
 function currentAge(p){
  const b=dLocal(p.dob), n=new Date(); let a=n.getFullYear()-b.getFullYear();
@@ -107,26 +180,38 @@ function renderStats(){
  document.getElementById('todayLabel').textContent=fmtDate(now);
 }
 function card(p){
- const [st,cl]=status(p), n=nextBirthday(p), nextAge=currentAge(p)+(daysUntil(p)===0?0:1);
- return `<div class="person"><div class="avatar">${initials(p.name)}</div><div class="pinfo"><div class="pname">${esc(p.name)}</div><div class="meta">${fmtDate(dLocal(p.dob))} • Umur sekarang ${currentAge(p)} • ${fmtDate(n)}</div></div><span class="badge ${cl}">${st}</span></div>`;
+ const [st,cl]=status(p), n=nextBirthday(p);
+ const targetAge=n.getFullYear()-dLocal(p.dob).getFullYear();
+ const d=daysUntil(p);
+ const countdown=d===0?'Hari ini':`${d} hari lagi`;
+ return `<div class="person upcoming-person" role="button" tabindex="0" title="Lihat rekod ${esc(p.name)}" onclick='focusPerson(${JSON.stringify(p.name)})' onkeydown='personKey(event,${JSON.stringify(p.name)})'><div class="avatar">${initials(p.name)}</div><div class="pinfo"><div class="pname">${esc(p.name)}</div><div class="meta">🎂 ${fmtDate(n)} • Akan mencecah <strong>${targetAge} tahun</strong> • ${countdown}</div></div><span class="badge ${cl}">${st}</span></div>`;
 }
 function renderUpcoming(){
+ const realToday=people.filter(p=>daysUntil(p)===0);
+ const today=realToday;
+ const todayBox=document.getElementById('todayBirthday');
+ if(today.length){
+   todayBox.classList.remove('hidden');
+   const sub='Jangan lupa ucapkan selamat hari lahir kepada staf berikut.';
+   todayBox.innerHTML=`<div class="birthday-today-head"><div class="birthday-today-icon">🎉</div><div><div class="birthday-today-title">Hari Lahir Hari Ini</div><div class="birthday-today-sub">${sub}</div></div></div><div class="birthday-today-list">${today.map(p=>`<div class="birthday-today-person"><div>${esc(p.name)}</div><small>🎂 Mencecah ${birthdayAge(p)} tahun hari ini • ${shortDate(dLocal(p.dob))}</small></div>`).join('')}</div>`;
+ }else{
+   todayBox.classList.add('hidden');
+   todayBox.innerHTML='';
+ }
  const arr=[...people].sort((a,b)=>daysUntil(a)-daysUntil(b)).slice(0,4);
  document.getElementById('upcoming').innerHTML=arr.length?arr.map(card).join(''):'<div class="empty">Tiada rekod.</div>';
- const today=people.filter(p=>daysUntil(p)===0);
- const notice=document.getElementById('notice');
- if(today.length){notice.classList.remove('hidden');notice.innerHTML='🎉 <strong>Hari lahir hari ini:</strong> '+today.map(p=>esc(p.name)).join(', ')+'.'}
- else notice.classList.add('hidden');
 }
+
 function matches(p){
  const q=document.getElementById('search').value.trim().toLowerCase();
- if(q && !p.name.toLowerCase().includes(q)) return false;
+ // Apabila carian digunakan, cari terus dalam SEMUA rekod tanpa terikat kepada tab aktif.
+ if(q) return p.name.toLowerCase().includes(q);
 
  const d=daysUntil(p);
- const n=nextBirthday(p);
  const now=new Date();
 
  if(filter==='today') return d===0;
+ if(filter==='week') return d>=1 && d<=7;
  if(filter==='month') return dLocal(p.dob).getMonth()===now.getMonth();
 
  const nextMonth=new Date(now.getFullYear(),now.getMonth()+1,1);
@@ -135,14 +220,79 @@ function matches(p){
    : true;
 }
 function renderTable(){
+ const q=document.getElementById('search').value.trim();
+ document.getElementById('searchBox').classList.toggle('has-value',!!q);
  const arr=[...people].filter(matches).sort((a,b)=>daysUntil(a)-daysUntil(b));
- document.getElementById('resultCount').textContent=`${arr.length} rekod`;
+ document.getElementById('resultCount').textContent=q?`${arr.length} padanan`:`${arr.length} rekod`;
  document.getElementById('tbody').innerHTML=arr.length?arr.map(p=>{
  const [st,cl]=status(p), n=nextBirthday(p);
- return `<tr><td class="table-name"><strong>${esc(p.name)}</strong></td><td>${shortDate(dLocal(p.dob))}</td><td>${currentAge(p)}</td><td>${fmtDate(n)}</td><td><span class="badge ${cl}">${st}</span></td></tr>`
+ const current=currentAge(p);
+ const target=n.getFullYear()-dLocal(p.dob).getFullYear();
+ return `<tr><td class="table-name"><strong>${esc(p.name)}</strong></td><td>${shortDate(dLocal(p.dob))}</td><td class="age-cell"><strong>${current} tahun</strong><span class="age-next">Akan mencecah ${target} tahun</span></td><td>${fmtDate(n)}</td><td><span class="badge ${cl}">${st}</span></td></tr>`
  }).join(''):'<tr><td colspan="5" class="empty">Tiada rekod sepadan.</td></tr>';
 }
-function setFilter(f,el){filter=f;document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));el.classList.add('active');renderTable()}
+function clearSearch(){const input=document.getElementById('search');input.value='';renderTable();input.focus()}
+function setFilter(f,el){
+ filter=f;
+ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+ if(el)el.classList.add('active');
+ renderTable();
+}
+function dashboardFilter(f){
+ const input=document.getElementById('search');
+ if(input.value.trim()){input.value='';document.getElementById('searchBox').classList.remove('has-value');}
+ const tab=[...document.querySelectorAll('.tab')].find(x=>x.getAttribute('onclick')?.includes(`setFilter('${f}'`));
+ setFilter(f,tab||null);
+ document.querySelector('#tbody').closest('.card').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function dashboardKey(e,f){
+ if(e.key==='Enter' || e.key===' '){e.preventDefault();dashboardFilter(f);}
+}
+function personKey(e,name){
+ if(e.key==='Enter' || e.key===' '){e.preventDefault();focusPerson(name);}
+}
+function focusPerson(name){
+ const input=document.getElementById('search');
+ input.value='';
+ document.getElementById('searchBox').classList.remove('has-value');
+ const allTab=[...document.querySelectorAll('.tab')].find(x=>x.getAttribute('onclick')?.includes("setFilter('all'"));
+ setFilter('all',allTab||null);
+ const row=[...document.querySelectorAll('#tbody tr')].find(tr=>tr.querySelector('.table-name strong')?.textContent.trim()===name);
+ if(row){
+   row.classList.add('record-highlight');
+   row.scrollIntoView({behavior:'smooth',block:'center'});
+   setTimeout(()=>row.classList.remove('record-highlight'),2200);
+ }
+}
+let toastTimer=null;
+function showToast(title,message,icon='✅'){
+ const box=document.getElementById('toast');
+ if(!box)return;
+ document.getElementById('toastTitle').textContent=title;
+ document.getElementById('toastMessage').textContent=message;
+ document.getElementById('toastIcon').textContent=icon;
+ box.classList.add('show');
+ clearTimeout(toastTimer);
+ toastTimer=setTimeout(hideToast,4500);
+}
+function hideToast(){
+ const box=document.getElementById('toast');
+ if(box)box.classList.remove('show');
+}
+
+function applyDarkMode(){
+ const enabled=localStorage.getItem('personalDateReminderDarkMode')==='enabled';
+ document.body.classList.toggle('dark',enabled);
+ const btn=document.getElementById('darkModeBtn');
+ if(btn) btn.textContent=enabled?'☀️ Mod Cerah':'🌙 Mod Gelap';
+}
+function toggleDarkMode(){
+ const enabled=!document.body.classList.contains('dark');
+ localStorage.setItem('personalDateReminderDarkMode',enabled?'enabled':'disabled');
+ applyDarkMode();
+ showToast(enabled?'Mod Gelap diaktifkan':'Mod Cerah diaktifkan',enabled?'Paparan gelap digunakan.':'Paparan cerah digunakan.',enabled?'🌙':'☀️');
+}
+
 function importCSV(e){
  const file=e.target.files[0];
  if(!file)return;
@@ -200,7 +350,7 @@ function importCSV(e){
    savePeople();
    renderAll();
 
-   alert(`Import selesai.\n\nRekod baharu ditambah: ${added}\nRekod pendua diabaikan: ${duplicate}\nJumlah rekod dalam sistem: ${people.length}`);
+   showToast('Import selesai', `Rekod baharu: ${added} • Pendua diabaikan: ${duplicate} • Jumlah: ${people.length} rekod`, '✅');
  };
  reader.readAsText(file);
  e.target.value='';
@@ -217,7 +367,7 @@ async function requestNotification(){
    const permission=await Notification.requestPermission();
 
    if(permission!=='granted'){
-     alert('Kebenaran notifikasi belum diberikan. Sila benarkan Notifications untuk laman ini.');
+     showToast('Notifikasi belum diaktifkan','Sila benarkan Notifications untuk laman ini.','⚠️');
      return;
    }
 
@@ -229,7 +379,7 @@ async function requestNotification(){
    if(todayBirthdays.length){
      sendBirthdayNotification(todayBirthdays);
    }else{
-     alert('Notifikasi ucapan hari lahir telah diaktifkan. Sistem akan menyemak hari lahir pada jam 8:00 pagi setiap hari.');
+     showToast('Peringatan hari lahir diaktifkan','Sistem akan menyemak hari lahir pada jam 8:00 pagi setiap hari.','🎂');
    }
  }catch(err){
    alert('Notifikasi tidak dapat diaktifkan pada peranti ini.');
@@ -291,6 +441,8 @@ function renderAll(){renderStats();renderUpcoming();renderTable()}
 localStorage.removeItem('personalDateReminderPeople');
 loadPeople();
 savePeople();
+applyDarkMode();
 renderAll();tick();setInterval(tick,1000);if(localStorage.getItem('birthdayNotifications')==='enabled')scheduleBirthdayNotification();
 </script>
+<div id="toast" class="toast" role="status" aria-live="polite"><div class="toast-icon" id="toastIcon">✅</div><div><div class="toast-title" id="toastTitle">Berjaya</div><div class="toast-message" id="toastMessage"></div></div><button class="toast-close" type="button" aria-label="Tutup" onclick="hideToast()">×</button></div>
 </body></html>
