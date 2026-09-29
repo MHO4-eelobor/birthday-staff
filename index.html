@@ -29,6 +29,25 @@ main{max-width:1180px;margin:-32px auto 40px;padding:0 18px}.grid{display:grid;g
 .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.searchbox{position:relative;flex:1;min-width:240px}.search{width:100%;border:1px solid var(--line);border-radius:11px;padding:11px 42px 11px 13px;font-size:14px;outline:none;background:#fff}.clear-search{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:28px;height:28px;padding:0;border:0;background:transparent;color:var(--muted);font-size:18px;display:none;align-items:center;justify-content:center}.clear-search:hover{background:#f1f5f9}.searchbox.has-value .clear-search{display:flex}
 button.primary{background:var(--accent);color:white;border-color:var(--accent)}button.green{background:#0f766e;color:white;border-color:#0f766e}
 .list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.person{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px;border:1px solid var(--line);border-radius:13px;background:#fff}.upcoming-person{cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}.upcoming-person:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(15,23,42,.08);border-color:#bfdbfe}.upcoming-person:focus{outline:3px solid rgba(37,99,235,.18);outline-offset:2px}.record-highlight{animation:recordPulse 1.8s ease}.record-highlight td{background:#eff6ff!important}.record-highlight td:first-child{box-shadow:inset 4px 0 0 #2563eb}@keyframes recordPulse{0%,100%{opacity:1}45%{opacity:.72}}.avatar{width:42px;height:42px;border-radius:12px;background:#eff6ff;color:#1d4ed8;display:grid;place-items:center;font-weight:800}.pinfo{flex:1;min-width:0}.pname{font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;letter-spacing:.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase}.meta{font-size:12px;color:var(--muted);margin-top:3px}.badge{font-size:11px;font-weight:800;border-radius:999px;padding:6px 9px;white-space:nowrap}.bday{background:#ecfdf5;color:#047857}.soon{background:#fff7ed;color:#c2410c}.normal{background:#f1f5f9;color:#475569}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse}.table-name{font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;text-transform:uppercase}.table th,.table td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);font-size:13px}.table th{color:var(--muted);font-weight:700}.table tr:hover{background:#f8fafc}.empty{text-align:center;padding:30px;color:var(--muted)}
+.admin-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.admin-action-btn{padding:6px 9px;font-size:11px;border-radius:8px}
+.admin-action-btn.danger{border-color:#dc2626;color:#dc2626}
+.admin-edit-panel{margin-top:8px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.admin-edit-form{display:grid;grid-template-columns:minmax(0,1fr) 220px auto;gap:10px;align-items:end}
+.admin-edit-form label{display:flex;flex-direction:column;gap:5px;font-size:11px;font-weight:700;color:var(--muted)}
+.admin-edit-form input{width:100%;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font:inherit;color:var(--text);background:var(--card)}
+@media(max-width:600px){.admin-edit-form{grid-template-columns:1fr}.admin-actions{justify-content:flex-start}}
+.admin-login-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.admin-status{font-size:12px;color:var(--muted);font-weight:600}
+.admin-login-panel{margin-top:12px;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--bg)}
+.admin-login-form{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end}
+.admin-login-form label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:700;color:var(--muted)}
+.admin-login-form input{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 11px;font:inherit;color:var(--text);background:var(--card);outline:none}
+.admin-login-form input:focus{border-color:#93c5fd;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.admin-only{display:none!important}
+.admin-only.visible{display:flex!important}
+@media(max-width:600px){.admin-login-form{grid-template-columns:1fr}.admin-login-form button{width:100%}}
+.add-record-panel{margin-top:12px;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--bg)}.add-record-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}.add-record-head strong{font-size:15px}.add-record-sub{font-size:12px;color:var(--muted);margin-top:3px}.add-close{border:0;background:transparent;padding:0 4px;font-size:24px;line-height:1;color:var(--muted)}.add-record-form{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:12px}.add-record-form label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:700;color:var(--muted)}.add-record-form input{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 11px;font:inherit;color:var(--text);background:var(--card);outline:none}.add-record-form input:focus{border-color:#93c5fd;box-shadow:0 0 0 3px rgba(37,99,235,.1)}.add-record-actions{display:flex;gap:8px;margin-top:13px}.add-record-actions button{min-width:120px}.add-record-panel.hidden{display:none!important}
 .toast{position:fixed;right:20px;bottom:20px;z-index:9999;min-width:280px;max-width:420px;padding:13px 16px;border:1px solid #bbf7d0;border-radius:14px;background:#fff;box-shadow:0 14px 35px rgba(15,23,42,.16);display:flex;align-items:flex-start;gap:10px;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s ease,transform .2s ease}.toast.show{opacity:1;transform:translateY(0)}.toast-icon{font-size:18px;line-height:1.2}.toast-title{font-size:13px;font-weight:800}.toast-message{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}.toast-close{margin-left:auto;border:0;background:transparent;padding:0 2px;color:var(--muted);font-size:18px;line-height:1;cursor:pointer}.notice{margin-top:14px;padding:13px 15px;border-radius:12px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af;font-size:13px}.birthday-today{margin-bottom:16px;padding:18px;border-radius:16px;background:linear-gradient(135deg,#fff7ed,#fffbeb);border:1px solid #fed7aa}.birthday-today-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}.birthday-today-icon{font-size:28px}.birthday-today-title{font-size:16px;font-weight:800;color:#9a3412}.birthday-today-sub{font-size:12px;color:#92400e;margin-top:2px}.birthday-today-list{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.birthday-today-person{background:#fff;border:1px solid #fed7aa;border-radius:12px;padding:11px 13px;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;text-transform:uppercase}.birthday-today-person small{display:block;font-family:Inter,Segoe UI,Arial,sans-serif;font-size:11px;font-weight:500;color:#78716c;text-transform:none;margin-top:4px}
 .footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 30px}.hidden{display:none!important}
 @media(max-width:850px){
@@ -56,15 +75,15 @@ main{padding:0 10px;margin-top:-26px}
 .toolbar > button:not(.tab){width:100%}
 .table-wrap{margin:0 -3px;overflow:visible}
 .table thead{display:none}
-.table,.table tbody,.table tr,.table td{display:block;width:100%}
-.table tr{position:relative;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:10px 11px;margin-bottom:9px}
+.table,.table tbody,.table td{display:block;width:100%}.table tr{display:grid;width:100%}
+.table tr{position:relative;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:10px 11px;margin-bottom:9px;grid-template-columns:minmax(0,1fr) auto;column-gap:10px}
 .table td{border:0;padding:3px 0;font-size:12px}
-.table td:first-child{padding-right:70px;margin-bottom:5px}
+.table td:first-child{grid-column:1 / -1;padding-right:0;margin-bottom:5px}
 .table td:first-child::before{content:''}
-.table td:nth-child(2)::before{content:'🎂 '}
+.table td:nth-child(2),.table td:nth-child(3),.table td:nth-child(4){grid-column:1 / -1}.table td:nth-child(2)::before{content:'🎂 '}
 .table td:nth-child(3)::before{content:'Umur: ';color:var(--muted);font-weight:600}
 .table td:nth-child(4)::before{content:'Hari lahir seterusnya: ';color:var(--muted);font-weight:600}
-.table td:nth-child(5){position:absolute;right:10px;top:10px}
+.table td:nth-child(5){grid-column:2;grid-row:1;position:static;align-self:start;justify-self:end;padding:0}
 .table-name{font-size:14px!important;line-height:1.3}
 .table-name strong{display:block;white-space:normal;overflow:visible;text-overflow:clip}
 .age-cell strong{font-size:13px}
@@ -77,6 +96,7 @@ main{padding:0 10px;margin-top:-26px}
 .pname{white-space:normal;line-height:1.3}
 .badge{font-size:10px;padding:5px 7px}
 .notice{font-size:12px}
+.add-record-form{grid-template-columns:1fr}.add-record-actions{display:grid;grid-template-columns:1fr 1fr}.add-record-actions button{width:100%;min-width:0}
 .footer{padding-bottom:22px}
 }
 @media(max-width:380px){
@@ -122,23 +142,47 @@ main{padding:0 10px;margin-top:-26px}
 
 <section class="card today">
 <div class="section-head"><h2>⚙️ Data & Tetapan</h2></div>
+<div class="admin-login-row">
+<button type="button" class="primary" onclick="toggleAdminLogin()" id="adminLoginBtn">🔐 Login Pentadbir</button>
+<span id="adminStatus" class="admin-status">Mod pengguna</span>
+<button type="button" class="admin-only" onclick="adminLogout()" id="adminLogoutBtn">🚪 Logout</button>
+</div>
+<div id="adminLoginPanel" class="admin-login-panel hidden">
+<div class="add-record-head"><div><strong>🔐 Login Pentadbir</strong><div class="add-record-sub">Fungsi pengurusan rekod hanya tersedia selepas login.</div></div><button type="button" class="add-close" onclick="toggleAdminLogin(false)" aria-label="Tutup">×</button></div>
+<div class="admin-login-form">
+<label>Username<input id="adminUsername" type="text" autocomplete="username" placeholder="Username" onkeydown="handleAdminKeydown(event,'username')"></label>
+<label>Kata Laluan<input id="adminPassword" type="password" autocomplete="current-password" placeholder="Kata laluan" onkeydown="handleAdminKeydown(event,'password')"></label>
+<button type="button" class="primary" onclick="adminLogin()" id="adminLoginSubmit">Login</button>
+</div></div>
 <div class="toolbar">
-<button type="button" onclick="document.getElementById('csvFile').click()">⬆ Import CSV</button>
+<button type="button" class="admin-only" onclick="toggleAddRecord()" id="addRecordBtn">➕ Tambah Rekod</button>
+<button type="button" class="green" onclick="refreshOnlineData()" id="refreshDataBtn">🔄 Segar Data</button>
 <button class="green" type="button" onclick="requestNotification()">🎂 Aktifkan Ucapan Hari Lahir</button>
 <button type="button" onclick="toggleDarkMode()" id="darkModeBtn">🌙 Mod Gelap</button>
-<input id="csvFile" type="file" accept=".csv,text/csv" class="hidden" onchange="importCSV(event)">
+</div>
+<div id="addRecordPanel" class="add-record-panel hidden">
+<div class="add-record-head"><div><strong>➕ Tambah Staf Baharu</strong><div class="add-record-sub">Masukkan nama dan tarikh lahir staf, kemudian tekan Simpan.</div></div><button type="button" class="add-close" onclick="toggleAddRecord(false)" aria-label="Tutup">×</button></div>
+<div class="add-record-form">
+<label>Nama Staf<input id="newName" type="text" placeholder="Contoh: AHMAD BIN ALI" autocomplete="off"></label>
+<label>Tarikh Lahir<input id="newDob" type="date"></label>
+</div>
+<div class="add-record-actions"><button type="button" class="primary" onclick="addRecord()">💾 Simpan Rekod</button><button type="button" onclick="clearAddRecordForm()">Kosongkan</button></div>
 </div>
 <div class="notice">
-Data sistem mengandungi <strong id="dataCount">43 rekod</strong>.
-Import CSV baharu akan <strong>menambah</strong> staf ke dalam sistem dan mengelakkan rekod pendua.
-Notifikasi ucapan hari lahir ditetapkan pada <strong>8:00 pagi</strong>.
+Data sistem mengandungi <strong id="dataCount">sedang dimuatkan...</strong> daripada <strong>Google Sheets</strong>.
+Data ini dibaca secara dalam talian melalui Google Apps Script. Gunakan <strong>🔄 Segar Data</strong> untuk mendapatkan data terkini.
+Rekod baharu akan disimpan terus ke <strong>Google Sheets</strong>. Rekod pendua akan ditolak secara automatik. Notifikasi ucapan hari lahir ditetapkan pada <strong>8:00 pagi</strong>.
 </div>
 </section>
-<div class="footer">Personal Date Reminder System • Versi 1.1 • Data sumber: PKMDPBIRTHDAY.xlsx • Import CSV boleh digunakan untuk menambah staf</div>
+<div class="footer">Personal Date Reminder System • Versi 2.0 • Sumber data: Google Sheets • Fasa 2: Tambah rekod dalam talian</div>
 </main>
 
 <script>
-let people = [{"name": "NOR HAYATI BINTI ABDUL RAZAK", "dob": "1976-04-02"}, {"name": "NOORZIHA BINTI MOHD KASIRUN", "dob": "1982-01-14"}, {"name": "NORIZAN BINTI MOHD SIDIK", "dob": "1977-05-20"}, {"name": "NORAINI BINTI JAFFAR @ ABDULLAH", "dob": "1971-11-05"}, {"name": "MARIAM BINTI HASSAN", "dob": "1980-11-06"}, {"name": "PERKAS RAO A/L RAMAH", "dob": "1971-02-27"}, {"name": "MOHD SALWANI BIN SALAMUN", "dob": "1981-06-10"}, {"name": "ROIZAWATI BINTI ALI", "dob": "1979-01-15"}, {"name": "SYAHIDAN BIN SAHROM", "dob": "1984-08-02"}, {"name": "EMILIA BINTI ROZILAN", "dob": "1985-05-18"}, {"name": "NUR SYAFIQ BIN RAZALI", "dob": "1987-07-28"}, {"name": "HAZZARIZA BINTI NAPIAH", "dob": "1981-02-27"}, {"name": "NURUL FARHANA BINTI ABDUL HAMID", "dob": "1986-10-16"}, {"name": "NOORAZREEN BINTI SAZALI", "dob": "1986-08-20"}, {"name": "MOHD NAZMI BIN ZAINUDDIN", "dob": "1983-02-25"}, {"name": "NORFAIZURA BT MD JANI", "dob": "1983-02-28"}, {"name": "MUHAMMAD FADZLI B. ABDUL MAIL", "dob": "1983-02-28"}, {"name": "SAIFUL BAHRI BIN MOHD ISA", "dob": "1980-04-10"}, {"name": "SITI AISYAH BINTI MOHD RAZIE", "dob": "1995-04-03"}, {"name": "DIANA SARAH BINTI MAWARDI", "dob": "1985-02-28"}, {"name": "FADZLY BIN AHMAD ZAINUDIN", "dob": "1980-11-15"}, {"name": "SARIPAH BINTI ABDUL SAMAD", "dob": "1970-09-19"}, {"name": "NOR AZIMA BINTI ROSELI", "dob": "1981-09-27"}, {"name": "LUKMAN BIN MOHAMAD", "dob": "1970-03-22"}, {"name": "AHMAD ARIFF AFFENDI BIN HAMZAH", "dob": "1987-09-06"}, {"name": "NURUL AMANINA BINTI NAZARUDIN", "dob": "1997-04-08"}, {"name": "SAMALUDIN BIN SUNDALU", "dob": "1981-12-05"}, {"name": "MUHAMMAD HAFIZAN BIN OMAR", "dob": "1977-06-30"}, {"name": "NUR AMEELIA BINTI BADRULSAM", "dob": "1994-11-23"}, {"name": "HASHIRA BINTI MOHAMED", "dob": "1983-11-08"}, {"name": "MOHAMAD ZAKARIA BIN ISMAIL", "dob": "1982-12-25"}, {"name": "NOOR AZARIAH BINTI NASRI", "dob": "1987-07-21"}, {"name": "NOOR ARISHA FARHANA BINTI MOHD YUSRI", "dob": "2001-05-23"}, {"name": "ZULKIFLI BIN ADAL", "dob": "1976-11-01"}, {"name": "SITI KHAIRUNNASHA ADYREENA BINTI MOHD.KERDAT", "dob": "1998-11-08"}, {"name": "ARENA RUSYDIENA BINTI ANUAR", "dob": "1998-11-09"}, {"name": "SYAHIDATUL ZUNIKA BINTI HAMEDI", "dob": "1994-01-05"}, {"name": "RECHALENE MAKILIN", "dob": "1988-07-27"}, {"name": "RABIATUL ADHAWIAH BINTI ISMAIL", "dob": "1981-04-03"}, {"name": "DINA ANAK KEMARAU", "dob": "1992-01-20"}, {"name": "MUHAMMAD HAZIQ BIN MD JUHAIRI", "dob": "1990-08-09"}, {"name": "FARHANA BINTI ZAILANI", "dob": "1997-12-29"}, {"name": "FARAH ADIBAH BINTI AHMAD ZAIDI", "dob": "1999-01-19"}];
+const API_URL = 'https://script.google.com/macros/s/AKfycbzpFBJeiLPdhD6M_c4FbZ_Jr4leln7FlCwH4rTXMzWPR7UNKRj_jRjZiT7Jpw1qxFJn-Q/exec';
+let people = [];
+let dataLoading = false;
+let lastDataSync = null;
+
 let filter='today';
 
 function dLocal(s){const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)}
@@ -220,17 +264,186 @@ function matches(p){
    : true;
 }
 function renderTable(){
- const q=document.getElementById('search').value.trim();
- document.getElementById('searchBox').classList.toggle('has-value',!!q);
- const arr=[...people].filter(matches).sort((a,b)=>daysUntil(a)-daysUntil(b));
- document.getElementById('resultCount').textContent=q?`${arr.length} padanan`:`${arr.length} rekod`;
- document.getElementById('tbody').innerHTML=arr.length?arr.map(p=>{
- const [st,cl]=status(p), n=nextBirthday(p);
- const current=currentAge(p);
- const target=n.getFullYear()-dLocal(p.dob).getFullYear();
- return `<tr><td class="table-name"><strong>${esc(p.name)}</strong></td><td>${shortDate(dLocal(p.dob))}</td><td class="age-cell"><strong>${current} tahun</strong><span class="age-next">Akan mencecah ${target} tahun</span></td><td>${fmtDate(n)}</td><td><span class="badge ${cl}">${st}</span></td></tr>`
- }).join(''):'<tr><td colspan="5" class="empty">Tiada rekod sepadan.</td></tr>';
+  const q=document.getElementById('search').value.trim();
+  document.getElementById('searchBox').classList.toggle('has-value',!!q);
+  const arr=[...people].filter(matches).sort((a,b)=>daysUntil(a)-daysUntil(b));
+  document.getElementById('resultCount').textContent=q?`${arr.length} padanan`:`${arr.length} rekod`;
+
+  document.getElementById('tbody').innerHTML=arr.length?arr.map(p=>{
+    const [st,cl]=status(p), n=nextBirthday(p);
+    const current=currentAge(p);
+    const target=n.getFullYear()-dLocal(p.dob).getFullYear();
+
+    const adminActions = isAdmin && (filter==='all' || q)
+      ? `<div class="admin-actions">
+           <button type="button" class="admin-action-btn" onclick='openEditRecord(${JSON.stringify(p.name)},${JSON.stringify(p.dob)})'>✏️ Edit</button>
+           <button type="button" class="admin-action-btn danger" onclick='deleteRecord(${JSON.stringify(p.name)},${JSON.stringify(p.dob)})'>🗑️ Padam</button>
+         </div>`
+      : '';
+
+    const editRow = isAdmin && (filter==='all' || q)
+      ? `<tr id="editRow_${encodeURIComponent(p.name+'|'+p.dob)}" class="hidden">
+           <td colspan="5">
+             <div class="admin-edit-panel">
+               <div class="admin-edit-form">
+                 <label>Nama<input id="editName_${encodeURIComponent(p.name+'|'+p.dob)}" value="${esc(p.name)}" autocomplete="off"></label>
+                 <label>Tarikh Lahir<input id="editDob_${encodeURIComponent(p.name+'|'+p.dob)}" type="date" value="${esc(p.dob)}"></label>
+                 <div style="display:flex;gap:7px">
+                   <button type="button" class="primary" onclick='saveEditRecord(${JSON.stringify(p.name)},${JSON.stringify(p.dob)})'>💾 Simpan</button>
+                   <button type="button" onclick='closeEditRecord(${JSON.stringify(p.name)},${JSON.stringify(p.dob)})'>Batal</button>
+                 </div>
+               </div>
+             </div>
+           </td>
+         </tr>`
+      : '';
+
+    return `<tr>
+      <td class="table-name"><strong>${esc(p.name)}</strong>${adminActions}</td>
+      <td>${shortDate(dLocal(p.dob))}</td>
+      <td class="age-cell"><strong>${current} tahun</strong><span class="age-next">Akan mencecah ${target} tahun</span></td>
+      <td>${fmtDate(n)}</td>
+      <td><span class="badge ${cl}">${st}</span></td>
+    </tr>${editRow}`;
+  }).join(''):'<tr><td colspan="5" class="empty">Tiada rekod sepadan.</td></tr>';
 }
+
+function editKey(name,dob){ return encodeURIComponent(name+'|'+dob); }
+
+function openEditRecord(name,dob){
+  if(!isAdmin){
+    showToast('Akses ditolak','Sila login sebagai pentadbir.','⚠️');
+    return;
+  }
+  const row=document.getElementById('editRow_'+editKey(name,dob));
+  if(row) row.classList.toggle('hidden');
+}
+
+function closeEditRecord(name,dob){
+  const row=document.getElementById('editRow_'+editKey(name,dob));
+  if(row) row.classList.add('hidden');
+}
+
+function saveEditRecord(oldName,oldDob){
+  if(!isAdmin || !adminToken){
+    showToast('Akses ditolak','Sila login semula sebagai pentadbir.','⚠️');
+    return;
+  }
+
+  const key=editKey(oldName,oldDob);
+  const name=document.getElementById('editName_'+key)?.value.trim().replace(/\s+/g,' ').toUpperCase();
+  const dob=document.getElementById('editDob_'+key)?.value;
+
+  if(!name || !dob){
+    showToast('Maklumat belum lengkap','Nama dan tarikh lahir diperlukan.','⚠️');
+    return;
+  }
+
+  const birth=dLocal(dob);
+  const today=new Date(); today.setHours(0,0,0,0);
+  if(Number.isNaN(birth.getTime()) || birth>today){
+    showToast('Tarikh lahir tidak sah','Sila semak tarikh lahir.','⚠️');
+    return;
+  }
+
+  const callbackName='birthdayAdminEdit_'+Date.now();
+  const script=document.createElement('script');
+  let finished=false;
+
+  const cleanup=()=>{
+    finished=true;
+    try{delete window[callbackName];}catch(e){window[callbackName]=undefined;}
+    script.remove();
+  };
+
+  const fail=()=>{
+    if(finished)return;
+    cleanup();
+    showToast('Edit gagal','Tidak dapat menghubungi Google Apps Script.','⚠️');
+  };
+
+  window[callbackName]=(payload)=>{
+    if(finished)return;
+    cleanup();
+    if(!payload || payload.success!==true){
+      showToast('Edit gagal',payload?.error || 'Rekod tidak dapat dikemas kini.','⚠️');
+      return;
+    }
+    showToast('Rekod berjaya dikemas kini',`${name} telah dikemas kini di Google Sheets.`,'✅');
+    refreshOnlineData();
+  };
+
+  script.onerror=fail;
+  script.src=API_URL
+    +'?action=edit'
+    +'&token='+encodeURIComponent(adminToken)
+    +'&oldNama='+encodeURIComponent(oldName)
+    +'&oldTarikhLahir='+encodeURIComponent(oldDob)
+    +'&nama='+encodeURIComponent(name)
+    +'&tarikhLahir='+encodeURIComponent(dob)
+    +'&callback='+encodeURIComponent(callbackName)
+    +'&_='+Date.now();
+
+  document.head.appendChild(script);
+}
+
+
+function deleteRecord(name,dob){
+  if(!isAdmin || !adminToken){
+    showToast('Akses ditolak','Sila login semula sebagai pentadbir.','⚠️');
+    return;
+  }
+
+  const ok=window.confirm(
+    'Anda pasti mahu memadam rekod ini?\n\n' +
+    name +
+    '\nTarikh Lahir: ' + shortDate(dLocal(dob)) +
+    '\n\nTindakan ini tidak boleh dipulihkan.'
+  );
+
+  if(!ok) return;
+
+  const callbackName='birthdayAdminDelete_'+Date.now();
+  const script=document.createElement('script');
+  let finished=false;
+
+  const cleanup=()=>{
+    finished=true;
+    try{delete window[callbackName];}catch(e){window[callbackName]=undefined;}
+    script.remove();
+  };
+
+  const fail=()=>{
+    if(finished)return;
+    cleanup();
+    showToast('Padam gagal','Tidak dapat menghubungi pelayan Apps Script.','⚠️');
+  };
+
+  window[callbackName]=(payload)=>{
+    if(finished)return;
+    cleanup();
+
+    if(!payload || payload.success!==true){
+      showToast('Padam gagal',payload?.error || 'Rekod tidak dapat dipadam.','⚠️');
+      return;
+    }
+
+    showToast('Rekod berjaya dipadam',`${name} telah dipadam daripada Google Sheets.`,'✅');
+    refreshOnlineData();
+  };
+
+  script.onerror=fail;
+  script.src=API_URL
+    +'?action=delete'
+    +'&token='+encodeURIComponent(adminToken)
+    +'&nama='+encodeURIComponent(name)
+    +'&tarikhLahir='+encodeURIComponent(dob)
+    +'&callback='+encodeURIComponent(callbackName)
+    +'&_='+Date.now();
+
+  document.head.appendChild(script);
+}
+
 function clearSearch(){const input=document.getElementById('search');input.value='';renderTable();input.focus()}
 function setFilter(f,el){
  filter=f;
@@ -293,68 +506,7 @@ function toggleDarkMode(){
  showToast(enabled?'Mod Gelap diaktifkan':'Mod Cerah diaktifkan',enabled?'Paparan gelap digunakan.':'Paparan cerah digunakan.',enabled?'🌙':'☀️');
 }
 
-function importCSV(e){
- const file=e.target.files[0];
- if(!file)return;
-
- const reader=new FileReader();
- reader.onload=()=>{
-   const text=reader.result.replace(/^\ufeff/,'');
-   const lines=text.split(/\r?\n/).filter(line=>line.trim()!=='');
-   if(lines.length<2){
-     alert('Fail CSV tidak mengandungi rekod.');
-     return;
-   }
-
-   const imported=[];
-   for(let i=1;i<lines.length;i++){
-     const line=lines[i].trim();
-     const m=line.match(/^"?(.*?)"?,\s*(\d{4}-\d{2}-\d{2}|\d{1,2}\/\d{1,2}\/\d{4})\s*$/);
-     if(!m)continue;
-
-     let name=m[1].replace(/^"|"$/g,'').replaceAll('""','"').trim().toUpperCase();
-     let dob=m[2].trim();
-
-     if(dob.includes('/')){
-       const parts=dob.split('/');
-       if(parts.length===3){
-         const [d,mo,y]=parts;
-         dob=`${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-       }
-     }
-
-     if(name && /^\d{4}-\d{2}-\d{2}$/.test(dob)){
-       imported.push({name,dob});
-     }
-   }
-
-   if(!imported.length){
-     alert('Tiada rekod yang sah ditemui. Pastikan CSV mempunyai lajur NAMA dan DOB.');
-     return;
-   }
-
-   let added=0, duplicate=0;
-   const existing=new Set(people.map(p=>`${p.name.toUpperCase()}|${p.dob}`));
-
-   imported.forEach(person=>{
-     const key=`${person.name}|${person.dob}`;
-     if(existing.has(key)){
-       duplicate++;
-     }else{
-       people.push(person);
-       existing.add(key);
-       added++;
-     }
-   });
-
-   savePeople();
-   renderAll();
-
-   showToast('Import selesai', `Rekod baharu: ${added} • Pendua diabaikan: ${duplicate} • Jumlah: ${people.length} rekod`, '✅');
- };
- reader.readAsText(file);
- e.target.value='';
-}function esc(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function esc(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 
 
 async function requestNotification(){
@@ -421,6 +573,222 @@ function scheduleBirthdayNotification(){
    scheduleBirthdayNotification();
  },delay);
 }
+
+let isAdmin = false;
+let adminToken = '';
+
+function applyAdminState(){
+  document.querySelectorAll('.admin-only').forEach(el=>el.classList.toggle('visible',isAdmin));
+  const status=document.getElementById('adminStatus');
+  if(status) status.textContent=isAdmin?'Pentadbir aktif':'Mod pengguna';
+  const loginBtn=document.getElementById('adminLoginBtn');
+  if(loginBtn) loginBtn.classList.toggle('hidden',isAdmin);
+  if(!isAdmin){
+    document.getElementById('addRecordPanel')?.classList.add('hidden');
+    document.getElementById('adminLoginPanel')?.classList.add('hidden');
+  }
+}
+
+function toggleAdminLogin(force){
+  const panel=document.getElementById('adminLoginPanel');
+  if(!panel)return;
+  const show=typeof force==='boolean'?force:panel.classList.contains('hidden');
+  panel.classList.toggle('hidden',!show);
+  if(show) document.getElementById('adminUsername').focus();
+}
+
+function handleAdminKeydown(event,field){
+  if(event.key!=='Enter') return;
+  event.preventDefault();
+  if(field==='username'){
+    document.getElementById('adminPassword')?.focus();
+  }else{
+    adminLogin();
+  }
+}
+
+function adminLogin(){
+  const username=document.getElementById('adminUsername').value.trim();
+  const password=document.getElementById('adminPassword').value;
+  if(!username || !password){
+    showToast('Maklumat belum lengkap','Sila masukkan username dan kata laluan.','⚠️'); return;
+  }
+  const btn=document.getElementById('adminLoginSubmit');
+  if(btn){btn.disabled=true;btn.textContent='⏳ Semakan...';}
+  const callbackName='birthdayAdminLogin_'+Date.now();
+  const script=document.createElement('script');
+  let finished=false;
+  const cleanup=()=>{
+    finished=true;
+    try{delete window[callbackName];}catch(e){window[callbackName]=undefined;}
+    script.remove();
+    if(btn){btn.disabled=false;btn.textContent='Login';}
+  };
+  const fail=()=>{
+    if(finished)return;
+    cleanup();
+    showToast('Login gagal','Tidak dapat menghubungi pelayan Apps Script.','⚠️');
+  };
+  window[callbackName]=(payload)=>{
+    if(finished)return;
+    if(!payload || payload.success!==true){
+      cleanup();
+      showToast('Login gagal',payload?.error || 'Username atau kata laluan tidak sah.','⚠️');
+      return;
+    }
+    cleanup();
+    isAdmin=true;
+    adminToken=payload.token || '';
+    document.getElementById('adminUsername').value='';
+    document.getElementById('adminPassword').value='';
+    toggleAdminLogin(false);
+    applyAdminState();
+    renderTable();
+    showToast('Login berjaya','Anda telah login sebagai pentadbir.','🔐');
+  };
+  script.onerror=fail;
+  script.src=API_URL+'?action=login'
+    +'&username='+encodeURIComponent(username)
+    +'&password='+encodeURIComponent(password)
+    +'&callback='+encodeURIComponent(callbackName)
+    +'&_='+Date.now();
+  document.head.appendChild(script);
+}
+
+function adminLogout(){
+  const token=adminToken;
+  isAdmin=false;
+  adminToken='';
+  applyAdminState();
+  renderTable();
+
+  if(token){
+    const callbackName='birthdayAdminLogout_'+Date.now();
+    const script=document.createElement('script');
+
+    window[callbackName]=()=>{
+      try{delete window[callbackName];}catch(e){window[callbackName]=undefined;}
+      script.remove();
+    };
+
+    script.onerror=()=>{
+      try{delete window[callbackName];}catch(e){window[callbackName]=undefined;}
+      script.remove();
+    };
+
+    script.src=API_URL
+      +'?action=logout'
+      +'&token='+encodeURIComponent(token)
+      +'&callback='+encodeURIComponent(callbackName)
+      +'&_='+Date.now();
+
+    document.head.appendChild(script);
+  }
+
+  showToast('Logout berjaya','Mod pentadbir telah ditutup.','🚪');
+}
+
+function toggleAddRecord(force){
+ const panel=document.getElementById('addRecordPanel');
+ const btn=document.getElementById('addRecordBtn');
+ const shouldShow=typeof force==='boolean'?force:panel.classList.contains('hidden');
+ panel.classList.toggle('hidden',!shouldShow);
+ btn.textContent=shouldShow?'✖ Tutup Tambah Rekod':'➕ Tambah Rekod';
+ if(shouldShow){
+   document.getElementById('newName').focus();
+ }
+}
+
+function clearAddRecordForm(){
+ document.getElementById('newName').value='';
+ document.getElementById('newDob').value='';
+ document.getElementById('newName').focus();
+}
+
+async function addRecord(){
+ const name=document.getElementById('newName').value.trim().replace(/\s+/g,' ').toUpperCase();
+ const dob=document.getElementById('newDob').value;
+
+ if(!name){
+   showToast('Nama belum diisi','Sila masukkan nama staf.','⚠️');
+   document.getElementById('newName').focus();
+   return;
+ }
+ if(!dob){
+   showToast('Tarikh lahir belum diisi','Sila pilih tarikh lahir staf.','⚠️');
+   document.getElementById('newDob').focus();
+   return;
+ }
+
+ const birth=dLocal(dob);
+ if(Number.isNaN(birth.getTime())){
+   showToast('Tarikh lahir tidak sah','Sila semak tarikh yang dipilih.','⚠️');
+   return;
+ }
+ const today=new Date();
+ today.setHours(0,0,0,0);
+ if(birth>today){
+   showToast('Tarikh lahir tidak sah','Tarikh lahir tidak boleh melebihi tarikh hari ini.','⚠️');
+   document.getElementById('newDob').focus();
+   return;
+ }
+
+ const duplicate=people.some(p=>`${p.name.toUpperCase()}|${p.dob}`===`${name}|${dob}`);
+ if(duplicate){
+   showToast('Rekod sudah wujud','Nama dan tarikh lahir tersebut telah ada dalam sistem.','⚠️');
+   return;
+ }
+
+ const btn=document.querySelector('#addRecordPanel button.primary');
+ if(btn){btn.disabled=true;btn.textContent='⏳ Menyimpan...';}
+
+ const callbackName='birthdayAddCallback_'+Date.now();
+ const script=document.createElement('script');
+ let finished=false;
+
+ const cleanup=()=>{
+   finished=true;
+   try{delete window[callbackName];}catch(e){window[callbackName]=undefined;}
+   script.remove();
+   if(btn){btn.disabled=false;btn.textContent='💾 Simpan Rekod';}
+ };
+
+ const fail=()=>{
+   if(finished)return;
+   cleanup();
+   showToast('Gagal menyimpan','Google Sheets tidak dapat menerima rekod. Semak Apps Script dan cuba lagi.','⚠️');
+ };
+
+ window[callbackName]=(payload)=>{
+   if(finished)return;
+   try{
+     if(!payload || payload.success!==true){
+       throw new Error(payload?.error || 'Gagal menyimpan rekod.');
+     }
+
+     cleanup();
+     clearAddRecordForm();
+     toggleAddRecord(false);
+     showToast('Rekod berjaya disimpan',`${name} telah ditambah ke Google Sheets.`,'✅');
+     refreshOnlineData();
+   }catch(err){
+     console.error(err);
+     cleanup();
+     showToast('Gagal menyimpan',err.message || 'Rekod tidak dapat disimpan.','⚠️');
+   }
+ };
+
+ script.onerror=fail;
+ const url=API_URL
+   +'?action=add'
+   +'&nama='+encodeURIComponent(name)
+   +'&tarikhLahir='+encodeURIComponent(dob)
+   +'&token='+encodeURIComponent(adminToken)+'&callback='+encodeURIComponent(callbackName)
+   +'&_='+Date.now();
+ script.src=url;
+ document.head.appendChild(script);
+}
+
 function savePeople(){
  try{
    localStorage.setItem('personalDateReminderPeople_v11',JSON.stringify(people));
@@ -438,11 +806,77 @@ function loadPeople(){
 }
 function tick(){document.getElementById('clock').textContent=new Date().toLocaleTimeString('ms-MY',{hour:'2-digit',minute:'2-digit',second:'2-digit'});}
 function renderAll(){renderStats();renderUpcoming();renderTable()}
-localStorage.removeItem('personalDateReminderPeople');
-loadPeople();
-savePeople();
 applyDarkMode();
-renderAll();tick();setInterval(tick,1000);if(localStorage.getItem('birthdayNotifications')==='enabled')scheduleBirthdayNotification();
+applyAdminState();
+renderAll();
+tick();
+setInterval(tick,1000);
+if(localStorage.getItem('birthdayNotifications')==='enabled')scheduleBirthdayNotification();
+
+function refreshOnlineData(){
+  if(dataLoading)return;
+  dataLoading=true;
+  const btn=document.getElementById('refreshDataBtn');
+  if(btn){btn.disabled=true;btn.textContent='⏳ Memuatkan...';}
+
+  const callbackName='birthdayApiCallback_'+Date.now();
+  const script=document.createElement('script');
+  let finished=false;
+
+  const cleanup=()=>{
+    finished=true;
+    try{delete window[callbackName];}catch(e){window[callbackName]=undefined;}
+    script.remove();
+    dataLoading=false;
+    if(btn){btn.disabled=false;btn.textContent='🔄 Segar Data';}
+  };
+
+  const fail=()=>{
+    if(finished)return;
+    console.error('Gagal mendapatkan data Google Sheets melalui JSONP.');
+    cleanup();
+    showToast('Gagal memuatkan data','Semak Web App Apps Script dan pastikan versi baharu telah dideploy.','⚠️');
+  };
+
+  window[callbackName]=(payload)=>{
+    if(finished)return;
+    try{
+      if(!payload || payload.success!==true || !Array.isArray(payload.data)){
+        throw new Error(payload?.error || 'Format data API tidak sah.');
+      }
+
+      const onlinePeople=payload.data.map(item=>({
+        name:String(item.nama||'').trim().toUpperCase(),
+        dob:normalizeDob(item.tarikhLahir)
+      })).filter(item=>item.name && /^\d{4}-\d{2}-\d{2}$/.test(item.dob));
+
+      people=onlinePeople;
+      lastDataSync=new Date();
+      renderAll();
+      if(localStorage.getItem('birthdayNotifications')==='enabled')scheduleBirthdayNotification();
+      cleanup();
+      showToast('Data berjaya dikemas kini',`${people.length} rekod diterima daripada Google Sheets.`,'☁️');
+    }catch(err){
+      console.error(err);
+      cleanup();
+      showToast('Gagal memproses data','Format data daripada Apps Script tidak sah.','⚠️');
+    }
+  };
+
+  script.onerror=fail;
+  script.src=API_URL+'?callback='+encodeURIComponent(callbackName)+'&_='+Date.now();
+  document.head.appendChild(script);
+}
+
+function normalizeDob(value){
+  const s=String(value||'').trim();
+  if(/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+  const m=s.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})$/);
+  if(m) return `${m[3]}-${String(m[2]).padStart(2,'0')}-${String(m[1]).padStart(2,'0')}`;
+  return s;
+}
+
+refreshOnlineData();
 </script>
 <div id="toast" class="toast" role="status" aria-live="polite"><div class="toast-icon" id="toastIcon">✅</div><div><div class="toast-title" id="toastTitle">Berjaya</div><div class="toast-message" id="toastMessage"></div></div><button class="toast-close" type="button" aria-label="Tutup" onclick="hideToast()">×</button></div>
 </body></html>
