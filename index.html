@@ -40,7 +40,7 @@ button.primary{background:var(--accent);color:white;border-color:var(--accent)}b
 .admin-login-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
 .admin-status{font-size:12px;color:var(--muted);font-weight:600}
 .admin-login-panel{margin-top:12px;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--bg)}
-.admin-login-form{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end}
+.admin-login-form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:end}
 .admin-login-form label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:700;color:var(--muted)}
 .admin-login-form input{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 11px;font:inherit;color:var(--text);background:var(--card);outline:none}
 .admin-login-form input:focus{border-color:#93c5fd;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
@@ -150,8 +150,7 @@ main{padding:0 10px;margin-top:-26px}
 <div id="adminLoginPanel" class="admin-login-panel hidden">
 <div class="add-record-head"><div><strong>🔐 Login Pentadbir</strong><div class="add-record-sub">Fungsi pengurusan rekod hanya tersedia selepas login.</div></div><button type="button" class="add-close" onclick="toggleAdminLogin(false)" aria-label="Tutup">×</button></div>
 <div class="admin-login-form">
-<label>Username<input id="adminUsername" type="text" autocomplete="username" placeholder="Username" onkeydown="handleAdminKeydown(event,'username')"></label>
-<label>Kata Laluan<input id="adminPassword" type="password" autocomplete="current-password" placeholder="Kata laluan" onkeydown="handleAdminKeydown(event,'password')"></label>
+<label>Kata Laluan<input id="adminPassword" type="password" autocomplete="current-password" placeholder="Masukkan kata laluan pentadbir" onkeydown="handleAdminKeydown(event,'password')"></label>
 <button type="button" class="primary" onclick="adminLogin()" id="adminLoginSubmit">Login</button>
 </div></div>
 <div class="toolbar">
@@ -594,24 +593,20 @@ function toggleAdminLogin(force){
   if(!panel)return;
   const show=typeof force==='boolean'?force:panel.classList.contains('hidden');
   panel.classList.toggle('hidden',!show);
-  if(show) document.getElementById('adminUsername').focus();
+  if(show) document.getElementById('adminPassword').focus();
 }
 
 function handleAdminKeydown(event,field){
   if(event.key!=='Enter') return;
   event.preventDefault();
-  if(field==='username'){
-    document.getElementById('adminPassword')?.focus();
-  }else{
-    adminLogin();
-  }
+  adminLogin();
 }
 
 function adminLogin(){
-  const username=document.getElementById('adminUsername').value.trim();
+  const username='admin';
   const password=document.getElementById('adminPassword').value;
-  if(!username || !password){
-    showToast('Maklumat belum lengkap','Sila masukkan username dan kata laluan.','⚠️'); return;
+  if(!password){
+    showToast('Maklumat belum lengkap','Sila masukkan kata laluan pentadbir.','⚠️'); return;
   }
   const btn=document.getElementById('adminLoginSubmit');
   if(btn){btn.disabled=true;btn.textContent='⏳ Semakan...';}
@@ -639,7 +634,6 @@ function adminLogin(){
     cleanup();
     isAdmin=true;
     adminToken=payload.token || '';
-    document.getElementById('adminUsername').value='';
     document.getElementById('adminPassword').value='';
     toggleAdminLogin(false);
     applyAdminState();
